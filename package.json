@@ -1,0 +1,181 @@
+{
+  "name": "copilot-push-notifier",
+  "displayName": "Copilot Push Notifier",
+  "description": "VS Code extension that sends push notifications when GitHub Copilot presents choices/suggestions",
+  "version": "1.0.0",
+  "publisher": "",
+  "license": "MIT",
+  "homepage": "https://github.com/bootarou/copilot-push-notifier#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bootarou/copilot-push-notifier.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bootarou/copilot-push-notifier/issues"
+  },
+  "keywords": [
+    "copilot",
+    "notifications",
+    "ai",
+    "productivity",
+    "windows",
+    "toast",
+    "suggestions",
+    "github"
+  ],
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "copilot-push-notifier.toggleNotifications",
+        "title": "Toggle Copilot Notifications"
+      },
+      {
+        "command": "copilot-push-notifier.testNotification",
+        "title": "Test Copilot Notification"
+      },
+      {
+        "command": "copilot-push-notifier.toggleSound",
+        "title": "Toggle Copilot Notification Sound"
+      },
+      {
+        "command": "copilot-push-notifier.toggleWindowsNotifications",
+        "title": "Toggle Windows Native Notifications"
+      },
+      {
+        "command": "copilot-push-notifier.testWindowsNotification",
+        "title": "Test Windows Native Notification Only"
+      },
+      {
+        "command": "copilot-push-notifier.testPowerShellNotification",
+        "title": "Test PowerShell Notification Only"
+      },
+      {
+        "command": "copilot-push-notifier.testWScriptPopup",
+        "title": "Test WScript Popup Only"
+      },
+      {
+        "command": "copilot-push-notifier.testMsgCommand",
+        "title": "Test msg.exe Command Only"
+      },
+      {
+        "command": "copilot-push-notifier.toggleVSCodeNotifications",
+        "title": "Toggle VS Code Internal Notifications"
+      },
+      {
+        "command": "copilot-push-notifier.toggleSilentMode",
+        "title": "Toggle Silent Mode (Disable ALL VS Code Messages)"
+      }
+    ],
+    "configuration": {
+      "title": "Copilot Push Notifier",
+      "properties": {
+        "copilotPushNotifier.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable Copilot push notifications"
+        },
+        "copilotPushNotifier.showInfoMessages": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show information messages when Copilot suggestions are available"
+        },
+        "copilotPushNotifier.showWarningMessages": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show warning messages for important Copilot suggestions"
+        },
+        "copilotPushNotifier.minimumSuggestionLength": {
+          "type": "number",
+          "default": 10,
+          "minimum": 1,
+          "description": "Minimum length of suggestion text to trigger notification"
+        },
+        "copilotPushNotifier.useSound": {
+          "type": "boolean",
+          "default": true,
+          "description": "Play sound when Copilot suggestions are available"
+        },
+        "copilotPushNotifier.useModalNotifications": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show modal notifications that require user interaction"
+        },
+        "copilotPushNotifier.notificationType": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warning",
+            "error"
+          ],
+          "default": "warning",
+          "description": "Type of notification to show (info, warning, or error)"
+        },
+        "copilotPushNotifier.useWindowsNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use Windows native toast notifications with system sound"
+        },
+        "copilotPushNotifier.disableVSCodeNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Disable VS Code internal notifications when Windows notifications are working"
+        },
+        "copilotPushNotifier.disableAllVSCodeMessages": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disable ALL VS Code messages including settings confirmations (silent mode)"
+        },
+        "copilotPushNotifier.monitorCopilotSession": {
+          "type": "boolean",
+          "default": true,
+          "description": "Monitor Copilot work sessions and notify about continuation prompts, interruptions, and session end"
+        },
+        "copilotPushNotifier.sessionTimeoutSeconds": {
+          "type": "number",
+          "default": 30,
+          "minimum": 10,
+          "maximum": 300,
+          "description": "Seconds of inactivity before considering Copilot session ended"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.19.2",
+    "@types/vscode": "^1.101.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/node-notifier": "^8.0.5",
+    "node-notifier": "^10.0.1"
+  }
+}
