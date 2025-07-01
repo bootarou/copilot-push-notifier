@@ -9,3 +9,17 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+
+# 不要なファイルを除外してファイルサイズを削減
+**/README_old.md
+**/test-copilot.js
+**/extension_broken.js
+**/extension_fixed.js
+node_modules/**/test/**
+node_modules/**/tests/**
+node_modules/**/*.md
+node_modules/**/*.txt
+node_modules/**/LICENSE*
+node_modules/**/CHANGELOG*
+node_modules/**/HISTORY*
+node_modules/**/.github/**
